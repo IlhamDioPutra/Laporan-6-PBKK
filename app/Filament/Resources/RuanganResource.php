@@ -4,20 +4,20 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
-use App\Models\Matkul;
+use App\Models\Ruangan;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\MatkulResource\Pages;
+use App\Filament\Resources\RuanganResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\MatkulResource\RelationManagers;
+use App\Filament\Resources\RuanganResource\RelationManagers;
 
-class MatkulResource extends Resource
+class RuanganResource extends Resource
 {
-    protected static ?string $model = Matkul::class;
+    protected static ?string $model = Ruangan::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -25,8 +25,7 @@ class MatkulResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('kode_matkul')->required()->unique(ignorable: fn ($record) => $record),
-                TextInput::make('nama_matkul')->required()
+                TextInput::make('ruangan')->required()->unique(ignorable: fn ($record) => $record)
             ]);
     }
 
@@ -34,8 +33,7 @@ class MatkulResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('kode_matkul'),
-                TextColumn::make('nama_matkul')
+                TextColumn::make('ruangan')
             ])
             ->filters([
                 //
@@ -61,9 +59,9 @@ class MatkulResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListMatkuls::route('/'),
-            'create' => Pages\CreateMatkul::route('/create'),
-            'edit' => Pages\EditMatkul::route('/{record}/edit'),
+            'index' => Pages\ListRuangans::route('/'),
+            'create' => Pages\CreateRuangan::route('/create'),
+            'edit' => Pages\EditRuangan::route('/{record}/edit'),
         ];
     }
 }

@@ -12,7 +12,7 @@ class Dosen extends Model
     protected $primarykey = "id";
     protected $fillable = ['nip', 'nama_dosen'];
 
-    // public function jadwal(){
-    //     return $this->hasMany(Jadwal::class);
-    // }
+    public function jadwal(){
+        return $this->hasMany(Jadwal::class);
+    }
 }
